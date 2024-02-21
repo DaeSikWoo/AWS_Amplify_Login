@@ -59,7 +59,7 @@
                 method: 'GET',
                 redirect: 'follow'
             };
-            var url = `https://[api-id].execute-api.[region].amazonaws.com/[stage]?username=${username}&password=${password}`;
+            var url = `https://[api-id].execute-api.[region].amazonaws.com/[stage]?username=${username}&password=${password}`; //
             fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => alert(JSON.parse(result).body))
