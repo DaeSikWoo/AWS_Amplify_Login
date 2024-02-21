@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Simple Login Page</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background-color: #232F3E;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+        }
+
+        form {
+
+            background-color: #fff;
+
+            padding: 30px;
+
+            border-radius: 5px;
+
+            box-shadow: 0px 0px 10px 0px #000;
+
+        }
+
+        label {
+
+            color: #232F3E;
+
+            font-size: 20px;
+
+            margin-right: 10px;
+
+        }
+
+        input {
+
+            font-size: 20px;
+
+            margin: 10px 0;
+
+            padding: 5px;
+
+        }
+
+        button {
+
+            color: #fff;
+
+            background-color: #232F3E;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            font-size: 20px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background-color: #FF9900;
+
+        }
+
+    </style>
+
+    <script>
+
+        var callAPI = (username, password) => {
+
+            var requestOptions = {
+
+                method: 'GET',
+
+                redirect: 'follow'
+
+            };
+
+            var url = `arn:aws:execute-api:ap-northeast-2:585924704480:7miy5byfb3/*/GET/?username=${username}&password=${password}`;
+
+            fetch(url, requestOptions)
+
+            .then(response => response.text())
+
+            .then(result => alert(JSON.parse(result).body))
+
+            .catch(error => console.log('error', error));
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <form>
+
+        <label for="username">Username :</label><br>
+
+        <input type="text" id="username"><br>
+
+        <label for="password">Password :</label><br>
+
+        <input type="password" id="password"><br>
+
+        <button type="button" onclick="callAPI(document.getElementById('username').value, document.getElementById('password').value)">Login</button>
+
+    </form>
+
+</body>
+
+</html>
