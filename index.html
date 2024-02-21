@@ -1,133 +1,80 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
-
-    <title>Simple Login Page</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <style>
-
         body {
-
-            font-family: Arial, Helvetica, sans-serif;
-
-            background-color: #232F3E;
-
+            font-family: Arial, sans-serif;
+            background: #344a72;
+            color: white;
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             height: 100vh;
-
         }
-
-        form {
-
-            background-color: #fff;
-
-            padding: 30px;
-
-            border-radius: 5px;
-
+        .container {
+            background: #2c3e50;
+            border-radius: 10px;
             box-shadow: 0px 0px 10px 0px #000;
-
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 100%;
         }
-
-        label {
-
-            color: #232F3E;
-
-            font-size: 20px;
-
-            margin-right: 10px;
-
+        .container h1 {
+            text-align: center;
+            margin-bottom: 30px;
         }
-
-        input {
-
-            font-size: 20px;
-
-            margin: 10px 0;
-
-            padding: 5px;
-
+        .container label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
         }
-
-        button {
-
-            color: #fff;
-
-            background-color: #232F3E;
-
-            border: none;
-
-            padding: 10px 20px;
-
-            font-size: 20px;
-
+        .container input {
+            font-size: 1em;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
             border-radius: 5px;
-
+            border: none;
+        }
+        .container button {
+            font-size: 1em;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #344a72;
             cursor: pointer;
-
         }
-
-        button:hover {
-
-            background-color: #FF9900;
-
+        .container button:hover {
+            background-color: #5379b8;
         }
-
     </style>
-
     <script>
-
         var callAPI = (username, password) => {
-
             var requestOptions = {
-
                 method: 'GET',
-
                 redirect: 'follow'
-
             };
-
-            var url = `arn:aws:execute-api:ap-northeast-2:585924704480:7miy5byfb3/*/GET/?username=${username}&password=${password}`;
-
+            var url = `https://[api-id].execute-api.[region].amazonaws.com/[stage]?username=${username}&password=${password}`;
             fetch(url, requestOptions)
-
             .then(response => response.text())
-
             .then(result => alert(JSON.parse(result).body))
-
             .catch(error => console.log('error', error));
-
         }
-
     </script>
-
 </head>
-
 <body>
-
-    <form>
-
-        <label for="username">Username :</label><br>
-
-        <input type="text" id="username"><br>
-
-        <label for="password">Password :</label><br>
-
-        <input type="password" id="password"><br>
-
-        <button type="button" onclick="callAPI(document.getElementById('username').value, document.getElementById('password').value)">Login</button>
-
-    </form>
-
+    <div class="container">
+        <h1>Login</h1>
+        <label for="username">Username</label>
+        <input type="text" id="username">
+        <label for="password">Password</label>
+        <input type="password" id="password">
+        <button onclick="callAPI(document.getElementById('username').value, document.getElementById('password').value)">Submit</button>
+    </div>
 </body>
-
 </html>
